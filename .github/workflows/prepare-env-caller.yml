@@ -1,0 +1,13 @@
+on: [push]
+jobs:
+    prepare-env-job:
+        runs-on: ubuntu-latest
+        name: A job to prepare env variables
+        steps:
+            - uses: actions/checkout@v4
+            - id: test
+              uses: actions/composite-actions-trial@v1
+              with: 
+                environment: dev
+                branch:
+                    dev
