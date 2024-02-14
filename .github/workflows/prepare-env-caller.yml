@@ -9,8 +9,7 @@ jobs:
               uses: devikrishnamk0123/composite-actions-trial/prepare-env@dev
               with: 
                 environment: dev
-                branch:
-                    dev
+                branch: dev
             - run: |
                 echo AWS ROLE - "$AWS_ROLE"
                 echo ENV - "$ENV"
