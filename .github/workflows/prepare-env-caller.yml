@@ -6,7 +6,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - id: prepare-env
-              uses: devikrishnamk0123/composite-actions-trial@dev
+              uses: devikrishnamk0123/composite-actions-trial/prepare-env@dev
               with: 
                 environment: dev
                 branch:
