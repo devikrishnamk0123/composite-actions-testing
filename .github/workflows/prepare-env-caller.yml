@@ -5,11 +5,13 @@ jobs:
         name: A job to prepare env variables
         steps:
             - uses: actions/checkout@v4
-            - id: test
+            - id: prepare-env
               uses: devikrishnamk0123/composite-actions-trial@dev
               with: 
                 environment: dev
                 branch:
                     main
-
+            - run: |
+                echo AWS ROLE - "${{ steps.prepare-env.outputs.AWS_ROLE }}"
+                echo ENV - "${{ steps.prepare-env.outputs.ENV }}"
 
