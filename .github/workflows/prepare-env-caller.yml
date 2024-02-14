@@ -6,7 +6,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - id: test
-              uses: devikrishnamk0123/composite-actions-trial@v3
+              uses: devikrishnamk0123/composite-actions-trial@v3.1
               with: 
                 environment: dev
                 branch:
