@@ -10,7 +10,7 @@ jobs:
               with: 
                 environment: dev
                 branch:
-                    main
+                    dev
             - run: |
                 echo AWS ROLE - "$AWS_ROLE"
                 echo ENV - "$ENV"
