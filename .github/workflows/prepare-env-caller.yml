@@ -12,6 +12,8 @@ jobs:
                 branch:
                     main
             - run: |
-                echo AWS ROLE - "${{ steps.prepare-env.outputs.AWS_ROLE }}"
-                echo ENV - "${{ steps.prepare-env.outputs.ENV }}"
-
+                echo AWS ROLE - "$AWS_ROLE"
+                echo ENV - "ENV"
+              env:
+                AWS ROLE: ${{ steps.prepare-env.outputs.AWS_ROLE }}
+                ENV: ${{ steps.prepare-env.outputs.ENV }}
