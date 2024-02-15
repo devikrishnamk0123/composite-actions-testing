@@ -3,6 +3,8 @@ jobs:
     prepare-env-job:
         runs-on: ubuntu-latest
         name: A job to prepare env variables
+        env:
+          SERVICE_NAME: nginx
         outputs:
           AWS_ROLE: ${{ steps.prepare-env.outputs.AWS_ROLE }}
           ENV: ${{ steps.prepare-env.outputs.ENV }}
@@ -45,6 +47,7 @@ jobs:
                 AWS_REGION: ${{ env.AWS_REGION }}
                 PROJECT_PREFIX: ${{ env.PROJECT_PREFIX }}
                 ECR_REPOSITORY: ${{ env.PROJECT_PREFIX }}
+                COMMON_TOKEN: ${{ secrets.COMMON_TOKEN }}
 
 
 
