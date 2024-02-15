@@ -3,6 +3,15 @@ jobs:
     prepare-env-job:
         runs-on: ubuntu-latest
         name: A job to prepare env variables
+        outputs:
+          AWS_ROLE: ${{ steps.prepare-env.outputs.AWS_ROLE }}
+          ENV: ${{ steps.prepare-env.outputs.ENV }}
+          PROJECT_PREFIX: ${{ steps.prepare-env.outputs.PROJECT_PREFIX }}
+          AWS_REGION: ${{ steps.prepare-env.outputs.AWS_REGION }}
+          EKS_CLUSTER: ${{ steps.prepare-env.outputs.EKS_CLUSTER }}
+          ECR_REPOSITORY: ${{ steps.prepare-env.outputs.ECR_REPOSITORY }}
+          K8S_NAMESPACE: ${{ steps.prepare-env.outputs.K8S_NAMESPACE }}
+          SLACK_WEBHOOK_URL: ${{ steps.prepare-env.outputs.SLACK_WEBHOOK_URL }}
         steps:
             - uses: actions/checkout@v4
             - id: prepare-env
@@ -16,3 +25,19 @@ jobs:
               env:
                 AWS_ROLE: ${{ steps.prepare-env.outputs.AWS_ROLE }}
                 ENV: ${{ steps.prepare-env.outputs.ENV }}
+    build-and-push-image-job:
+        runs-on: ubuntu-latest
+        name: Job to build and push docker image
+        needs: prepare-env-job
+        env:
+          ENV: ${{ needs.prepare-env-job.outputs.ENV }}
+          AWS_ROLE: ${{needs.prepare-env-job.outputs.AWS_ROLE}}
+          AWS_REGION: ${{needs.prepare-env-job.outputs.AWS_REGION}}
+          PROJECT_PREFIX: ${{needs.prepare-env-job.outputs.PROJECT_PREFIX}}
+          ECR_REPOSITORY: ${{needs.prepare-env-job.outputs.ECR_REPOSITORY}}
+
+        steps:
+            - id: build_and_push_docker_image
+              uses: devikrishnamk0123/composite-actions-trial/build-and-push-docker-image@dev
+
+        
