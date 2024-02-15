@@ -41,11 +41,12 @@ jobs:
               uses: devikrishnamk0123/composite-actions-trial/build-and-push-docker-image@dev
               with:
                 ENV: ${{ env.ENV }}
-                AWS_ROLE: ${{ env.AWS_ROLE }}
+                AWS_ROLE: ${{ secrets[env.AWS_ROLE] }}
                 AWS_REGION: ${{ env.AWS_REGION }}
                 PROJECT_PREFIX: ${{ env.PROJECT_PREFIX }}
                 ECR_REPOSITORY: ${{ env.PROJECT_PREFIX }}
 
-                
+
+
 
         
